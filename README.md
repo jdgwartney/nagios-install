@@ -1,4 +1,4 @@
-# Nagios Virtual machine
+# Nagios Virtual Machine
 Uses vagrant to create a CentOS 6.5 VM and install with Nagios 3.51 core
 
 ## Requirements
