@@ -27,7 +27,7 @@ sudo yum update >> $LOG 2>&1
 log "Installing system adminstration packages..."
 sudo yum install -y man wget >> $LOG 2>&1
 
-log "Install epel gpg keys and epel-release package..."
+log "Installing EPEL gpg keys and package..."
 wget https://fedoraproject.org/static/0608B895.txt >> $LOG 2>&1
 sudo mv 0608B895.txt /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-6 >> $LOG 2>&1
 sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-6 >> $LOG 2>&1
