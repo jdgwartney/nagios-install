@@ -61,7 +61,7 @@ log "Add required users and groups..."
 sudo useradd ${NAGIOS_USER} >> $LOG 2>&1
 groupadd ${NAGIOS_CMD_GROUP} >> $LOG 2>&1
 usermod -a -G ${NAGIOS_CMD_GROUP} ${NAGIOS_USER} >> $LOG 2>&1
-echo "nagios" | sudo passwd nagios --stdin
+echo "nagios" | sudo passwd nagios --stdin >> $LOG 2>&1
 
 #
 # Download the Nagios distribution
