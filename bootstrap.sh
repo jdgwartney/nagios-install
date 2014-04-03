@@ -37,7 +37,7 @@ sudo rpm -ivh http://mirrors.mit.edu/epel/6/x86_64/epel-release-6-8.noarch.rpm >
 # Install packages required for Nagios
 #
 log "Installing required packages for Nagios..."
-sudo yum install -y wget httpd php gcc glibc glibc-common gd gd-devel make net-snmp >> $LOG 2>&1
+sudo yum install -y wget httpd php gcc glibc glibc-common gd gd-devel make net-snmp mailx >> $LOG 2>&1
 
 #
 # Required packages for RVM
