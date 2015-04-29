@@ -57,11 +57,14 @@ sudo yum install -y curl unzip >> $LOG 2>&1
 NAGIOS_USER=nagios
 NAGIOS_GROUP=nagios
 NAGIOS_CMD_GROUP=nagcmd
+VAGRANT_USER=vagrant
 log "Add required users and groups..."
 sudo useradd ${NAGIOS_USER} >> $LOG 2>&1
-groupadd ${NAGIOS_CMD_GROUP} >> $LOG 2>&1
-usermod -a -G ${NAGIOS_CMD_GROUP} ${NAGIOS_USER} >> $LOG 2>&1
+sudo groupadd ${NAGIOS_CMD_GROUP} >> $LOG 2>&1
+sudo usermod -a -G ${NAGIOS_CMD_GROUP} ${NAGIOS_USER} >> $LOG 2>&1
 echo "nagios" | sudo passwd nagios --stdin >> $LOG 2>&1
+
+sudo usermod -a -G ${NAGIOS_CMD_GROUP} ${VAGRANT_USER} >> $LOG 2>&1
 
 #
 # Download the Nagios distribution
@@ -112,6 +115,9 @@ log "Install contributed event handlers..."
 cp -R contrib/eventhandlers ${NAGIOS_INSTALL}/libexec >> $LOG 2>&1
 sudo chown -R ${NAGIOS_USER}:${NAGIOS_GROUP} ${NAGIOS_INSTALL}/libexec/eventhandlers >> $LOG 2>&1
 popd > /dev/null 2>&1
+
+log "$(id vagrant)"
+echo "export PATH=\$PATH:${NAGIOS_INSTALL}/libexec:${NAGIOS_INSTALL}/bin" >> /home/$VAGRANT_USER/.bash_profile
 
 log "Validate nagios configuration..."
 ${NAGIOS_INSTALL}/bin/nagios -v ${NAGIOS_INSTALL}/etc/nagios.cfg >> $LOG 2>&1
