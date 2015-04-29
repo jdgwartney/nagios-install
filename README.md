@@ -16,8 +16,20 @@ Uses vagrant to create a CentOS 6.5 VM and install with Nagios 3.51 core
 5. To login onto the host: ```$ vagrant ssh```
 
 ### Login as the Nagios User
-There is password
-1. Extract the ssh configuration: ```$ vagrant ssh-config```
+The nagios unix user password is `nagios`.
+NOTE: Vagrant performs the port forwarding from 2222 to 22.
+
+1. ```ssh -l nagios -p 2222 localhost```
+
+### Suspend
+Saves the state of the VM on disk so it can be resumed later
+
+1. ```vagrant suspend```
+
+### Resume
+Restarts VM from its preserved state.
+
+1. ```vagrant resume```
 
 ### Shutdown
 Completely destroys the VM and it state, but it also
